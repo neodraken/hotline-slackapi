@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\TicketRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TicketRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
 {
@@ -46,6 +48,11 @@ class Ticket
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    const TYPE_PROBLEM = 0;
+    const TYPE_INCIDENT = 1;
+    const TYPE_TASK = 2;
+
 
     public function getId(): ?int
     {
@@ -122,5 +129,15 @@ class Ticket
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     *
+     * @return void
+     */
+    public function setCreatedAtDateTimeValue():void
+    {
+        $this->createdAt = new DateTime();
     }
 }

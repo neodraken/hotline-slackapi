@@ -31,11 +31,14 @@ class TicketController extends AbstractController
 
         //Ticket form 
         $ticket = new Ticket();
-        $form = $this->createForm(TicketType::class);
+        $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
-
+        
         if($form->isSubmitted() && $form->isValid()) {
-            //send bdd
+            //persist datas
+            $this->manager->persist($ticket);
+            $this->manager->flush();
+            
             //send to slack
         }
 

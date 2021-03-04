@@ -25,9 +25,9 @@ class TicketType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'label' => 'Type task',
                 'choices'  => [
-                    'Problem' => 0,
-                    'Incident' => 1,
-                    'Task' => 2,
+                    'Problem' => Ticket::TYPE_PROBLEM,
+                    'Incident' => Ticket::TYPE_INCIDENT,
+                    'Task' => Ticket::TYPE_TASK,
                 ],
             ])
             ->add('submit', SubmitType::class);
