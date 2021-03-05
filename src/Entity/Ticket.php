@@ -46,7 +46,7 @@ class Ticket
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
+     * 
      */
     private $type;
 
@@ -59,6 +59,12 @@ class Ticket
     const TYPE_PROBLEM = 0;
     const TYPE_INCIDENT = 1;
     const TYPE_TASK = 2;
+
+    const LABEL_TYPES = [
+        self::TYPE_PROBLEM => 'Problem',
+        self::TYPE_INCIDENT => 'Incident',
+        self::TYPE_TASK => 'Task',
+    ];
 
 
     public function getId(): ?int
@@ -143,8 +149,18 @@ class Ticket
      *
      * @return void
      */
-    public function setCreatedAtDateTimeValue():void
+    public function setCreatedAtDateTimeValue(): void
     {
         $this->createdAt = new DateTime();
+    }
+
+    /**
+     * Get label from type
+     *
+     * @return string
+     */
+    public function getLabelType(): string
+    {
+        return self::LABEL_TYPES[$this->getType()];
     }
 }
