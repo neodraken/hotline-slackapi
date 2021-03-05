@@ -17,13 +17,13 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Name requester'
+                'label' => 'Requester name'
             ])
             ->add('email', EmailType::class)
             ->add('summary')
             ->add('description')
             ->add('type', ChoiceType::class, [
-                'label' => 'Type task',
+                'label' => 'Ticket status',
                 'choices'  => [
                     'Problem' => Ticket::TYPE_PROBLEM,
                     'Incident' => Ticket::TYPE_INCIDENT,

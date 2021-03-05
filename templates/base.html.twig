@@ -7,10 +7,40 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		{% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet"/>
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
-	</body>
-</html>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" href="#">Hotline - slack API</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ path('homepage') }}">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<main role="main" class="container mt-5"> {% block body %}{% endblock %}
+			</main>
+
+			<footer class="mt-7 px-3 py-5 text-center text-muted">
+				<p>
+					Hotline - slack API
+				</p>
+				<p>
+					<a href="#" class="text-white">Back to top</a>
+				</p>
+			</footer>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>
